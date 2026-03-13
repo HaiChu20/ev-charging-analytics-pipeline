@@ -155,7 +155,3 @@ cd ../..
 - Do not commit `.env`, `terraform.tfvars`, or Terraform state files
 - Rotate keys immediately if credentials were exposed
 - Keep sample/template config files only in Git
-
-## Runbook
-
-For a detailed walkthrough, see `RUN.md`.
