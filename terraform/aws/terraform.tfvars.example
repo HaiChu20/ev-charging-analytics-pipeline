@@ -1,0 +1,11 @@
+# Copy to terraform.tfvars and fill in. Do not commit terraform.tfvars (add to .gitignore).
+
+# Region where you want to create the S3 bucket and IAM role.
+aws_region  = "eu-north-1"
+
+# Name of the S3 bucket for raw + processed data (must be globally unique).
+bucket_name = "ev-charging-pipeline-demo"
+
+# Tag to indicate environment (used only for tags).
+environment = "dev"
+

@@ -1,0 +1,18 @@
+aws_instance_profile_arn = ""
+
+# Cluster and job
+cluster_name                    = "ev-charging-dev"
+cluster_num_workers             = 1
+cluster_autotermination_minutes = 30
+
+job_name        = "ev-charging-openchargemap-pipeline"
+job_timezone    = "Europe/Helsinki"
+job_quartz_cron = "0 0 6 * * ?"   # Daily at 06:00
+
+# Passed into the notebook as widget defaults
+pipeline_bucket_name    = "ev-charging-pipeline-demo"
+
+# Use "auto" (or leave empty in the widget) to always read today's partition.
+# For backfills, set a specific date like "2026-03-12".
+pipeline_partition_date = "auto"
+
