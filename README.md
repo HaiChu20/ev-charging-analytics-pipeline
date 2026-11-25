@@ -1,40 +1,12 @@
 # EV Charging Analytics Pipeline
 
-End-to-end data pipeline for EV charging infrastructure analytics.
+Analyze EV charging coverage by region and compare connector types and station operators. The pipeline ingests Open Charge Map station and reference data into AWS S3 and uses Databricks, PySpark, and Delta Lake to publish tables for SQL reporting and dashboards.
 
-This project ingests Open Charge Map data, lands raw snapshots in AWS S3, transforms data in Databricks with PySpark and Delta Lake, and publishes analytics-ready tables for dashboards and SQL reporting.
-
-## Description
-
-The pipeline processes two Open Charge Map endpoints:
-
-- `/v3/poi` for charging station records
-- `/v3/referencedata/` for lookup dimensions (operators, connector types, usage types, countries, status types)
-
-Data is organized with a Medallion architecture:
-
-- Bronze: raw JSON snapshots
-- Silver: cleaned and enriched Delta tables
-- Gold: aggregate Delta tables for analytics
-
-## Project Highlights
-
-- Automated infrastructure provisioning with Terraform (AWS + Databricks)
-- Reliable notebook orchestration for Bronze to Silver to Gold processing
-- Reference-data enrichment for better analytics quality
-- SQL analytics layer managed as code through Terraform
-- Reproducible pipeline runs with configurable partition date
-
-## High Level Architecture
+## Architecture
 
 ![EV Charging Data Pipeline](architecture.jpg)
 
-
-- Terraform provisions AWS resources and Databricks resources
-- Python scripts fetch Open Charge Map data and upload raw files
-- S3 stores Bronze raw JSON and Delta outputs for Silver and Gold
-- Databricks notebooks transform and enrich the data model
-- Databricks SQL queries and dashboard notebook provide analytics consumption
+Terraform provisions AWS and Databricks resources and manages the SQL analytics layer. Python ingests `/v3/poi` station records and `/v3/referencedata/` lookups. Databricks jobs process each ingestion date through the three layers of the medallion architecture.
 
 ## Data Layers
 
